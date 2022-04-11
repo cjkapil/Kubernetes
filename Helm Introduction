@@ -1,0 +1,78 @@
+What is Helm?
+
+1) Package Manager for Kubernetes
+  To pack YAML Files and distribute them in public and private repositories
+
+Example, WE HAVE TO DEPLOY ELASTICK STACK FOR lOGGING then one will have to create Stateful Set, ConfigMap, Secret, K8s user with permissions, Services
+then this bundle od YAML files will be pretty standard throughout differenct deployments so people decided
+to create such bundles of YAML files and call them Helm Charts.
+
+So, Helm Charts are:
+  -Bundle of YAML Files
+  -Create your own Helm Charts with Helm
+  -Push them to the Helm Repositories
+  -Download and use already present Helm Charts.
+  
+ Can use the following links:
+ - Helm hub: https://hub.helm.sh/
+ - Helm charts GitHub Project: https://github.com/helm/charts
+ - Installing Helm: https://helm.sh/docs/intro/install/
+ - Helm v3 release notes: https://helm.sh/blog/helm-3-released/
+
+2) Templating Engine:
+  To create single templates for multiple microservices with almost same config file
+  except a few differencess.
+  
+  Exapmle, If we have 100 microservices and all of them differ only in port, image and name tag then rather than creating 100 yaml files 
+  different for each microservice, we can create one Helm template and use it for all.
+  The template file is created as 1. Define a common blueprint
+                                  2. Dynamic values are replaced by placeholders( these values look like {{ .Values.container.name }}
+                                     and are stored in a separate file called values.yaml)
+                                
+3) Use same application in differenct environments:
+  Create your own Helm charts for test environment and use that to deploy the application on prod and dev clusters using own Helm charts.
+  
+  
+ 
+===================================
+
+Helm Chart Structure
+
+====================================
+
+Directory Structure
+mychart/            : Top level folder => name of chart
+  Chart.yaml        : meta info about the chart
+  values.yaml       : values for the template files
+  charts  folder    : chart dependencies
+  templates folder  : the actual template files
+
+after running commands helm install <chartname> the template files willbe filled with the values from values.yaml
+
+
+===================================
+Value Injection Into Template Files
+===================================
+
+values.yaml           my-values.yaml      =     .Values object 
+imageName: myapp       version: 2.0.0             imageName: myapp
+port: 8080                                        port: 8080
+version: 1.0.2                                    version: 2.0.0
+  
+  default                 override values
+  
+after runninf helm install --values=my-values.yaml <chartname> .Values object is created
+
+
+                                OR
+                                
+                                
+ We can run the command helm install --set version=2.0.0
+ 
+
+
+Commands :
+
+helm search <keyword>
+helm install <chartname>
+helm install --set
