@@ -3,6 +3,10 @@ What is Helm?
 1) Package Manager for Kubernetes
   To pack YAML Files and distribute them in public and private repositories
 
+******
+Tip: The complete helm/helm library is written in GoLang by Google
+******
+
 Example, WE HAVE TO DEPLOY ELASTICK STACK FOR lOGGING then one will have to create Stateful Set, ConfigMap, Secret, K8s user with permissions, Services
 then this bundle od YAML files will be pretty standard throughout differenct deployments so people decided
 to create such bundles of YAML files and call them Helm Charts.
@@ -31,9 +35,33 @@ So, Helm Charts are:
                                 
 3) Use same application in differenct environments:
   Create your own Helm charts for test environment and use that to deploy the application on prod and dev clusters using own Helm charts.
-  
-  
- 
+
+
+===================================
+Keywords in Helm
+===================================
+
+1. CHART: It is a helm package, it contains all the yaml resource definations necessary to run an application
+
+2. RELEASE: A release is an instance of a chart running in K8's. One chart can be installed many times into the same 
+            cluster and each time it is installed, a new RELEASE is created. Helm keeps track of all chart executions.
+           
+3. REPOSITORY: Location where the package is installed.
+
+
+===================================
+
+HELM -3 ARCHITECHTURE
+
+===================================
+
+-It is a single-service architecture, one executable is responsible for implementing HELM. There is no client-server(tiller) split like HELM-2 
+nor is the core processiong logic distributed among components.
+
+-Implementation of HELM-3 is a single command line, client with no in-cluster server or controller. This tool exposes command-line
+operations and unilaterally handles the package management process.
+
+
 ===================================
 
 Helm Chart Structure
@@ -61,7 +89,7 @@ version: 1.0.2                                    version: 2.0.0
   
   default                 override values
   
-after runninf helm install --values=my-values.yaml <chartname> .Values object is created
+after running helm install --values=my-values.yaml <chartname> .Values object is created
 
 
                                 OR
@@ -70,8 +98,9 @@ after runninf helm install --values=my-values.yaml <chartname> .Values object is
  We can run the command helm install --set version=2.0.0
  
 
-
+==============================
 Commands :
+==============================
 
 helm search <keyword>
 helm install <chartname>
