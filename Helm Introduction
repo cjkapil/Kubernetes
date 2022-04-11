@@ -101,7 +101,10 @@ after running helm install --values=my-values.yaml <chartname> .Values object is
 ==============================
 Commands :
 ==============================
+Follow this helm docs for all the commands : https://helm.sh/docs/helm/helm/
+
+Examples:
 
 helm search <keyword>
-helm install <chartname>
+helm install <release_name_by_user> <chartname> 
 helm install --set
