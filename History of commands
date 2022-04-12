@@ -1,0 +1,209 @@
+    1  sudo apt-get install     ca-certificates     curl     gnupg     lsb-release
+    2   curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    3  echo   "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
+    4    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    5  sudo apt-get update
+    6  sudo apt-get install docker-ce docker-ce-cli containerd.io
+    7  minikube status
+    8  minikube start -e --drivers=none
+    9  minikube start --drivers=none
+   10  minikube start --driver=none
+   11  helm search repo
+   12  sudo curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+   13  sudo chmod 700 get_helm.sh
+   14  sudo ./get_helm.sh
+   15  apt-get install tree
+   16  helm search repo
+   17  helm search repo rometheus
+   18  helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+   19  helm repo update 
+   20  helm install my-prometheus prometheus-community/prometheus --version 15.8.1
+   21  curl my-prometheus-server.default.svc.cluster.local
+   22  curl http://my-prometheus-server.default.svc.cluster.local
+   23  kubectl get pods
+   24  kubectl get svc 
+   25  helm repo add bitnami https://charts.bitnami.com/bitnami
+   26  helm install my-kafka bitnami/kafka --version 16.2.3
+   27  curl hrrp://my-kafka.default.svc.cluster.local:9092
+   28  curl http://my-kafka.default.svc.cluster.local:9092
+   29  kafka-console-producer.sh             
+   30              --broker-list my-kafka-0.my-kafka-headless.default.svc.cluster.local:9092             --topic test
+   31  kubectl get pods
+   32  helm repo add bitnami https://charts.bitnami.com/bitnami
+   33  helm repo add spark https://charts.bitnami.com/bitnami
+   34  helm install my-spark bitnami/spark --version 5.9.8
+   35  spark
+   36  telnet 
+   37  netstat
+   38  netstat | grep 9090
+   39  curl my-prometheus-alertmanager.default.svc.cluster.local
+   40  curl http://my-prometheus-server.default.svc.cluster.local:9090
+   41  my-prometheus-server.default.svc.cluster.local
+   42  curl http://my-prometheus-server.default.svc.cluster.local:80
+   43  kubectl get svc 
+   44  helm show values my-prometheus
+   45  helm show values
+   46  helm show values all
+   47  helm show all
+   48  helm show all my-prometheus
+   49  helm show 
+   50  helm list
+   51  helm show chart my-spark
+   52  help repo list
+   53  helm repo list
+   54  helm show chart spark
+   55  bitnami/spark
+   56  helm show chart bitnami/spark
+   57  helm show values bitnami/spark
+   58  helm repo list
+   59  helm show values prometheus-community/helm-charts
+   60  helm install my-prometheus prometheus-community/prometheus --version 15.8.1
+   61  helm show values root@minikube-kc:~# helm install my-prometheus prometheus-community/prometheus 
+   62  helm show values prometheus-community/prometheus 
+   63  helm show values prometheus-community/prometheus | grep servicetype
+   64  helm show values prometheus-community/prometheus | grep service
+   65  helm show values prometheus-community/prometheus | grep ClusterIp
+   66  helm show values prometheus-community/prometheus | grep Cluster
+   67  helm show values prometheus-community/prometheus | grep ClusterIP
+   68  helm show values prometheus-community/prometheus | grep Cluster
+   69  helm show values prometheus-community/prometheus | grep type
+   70  helm show values prometheus-community/prometheus 
+   71  helm show chart prometheus-community/prometheus 
+   72  helm show
+   73  helm show crds prometheus-community/prometheus 
+   74  helm show values prometheus-community/prometheus 
+   75  helm show values prometheus-community/prometheus clear
+   76  kubectl get pods
+   77  helm status my-spark
+   78   kubectl port-forward --namespace default svc/my-spark-master-svc 80:80
+   79  export EXAMPLE_JAR=$(kubectl exec -ti --namespace default my-spark-worker-0 -- find examples/jars/ -name 'spark-example*\.jar' | tr -d '\r')
+   80   export EXAMPLE_JAR=$(kubectl exec -ti --namespace default my-spark-worker-0 -- find examples/jars/ -name 'spark-example*\.jar' | tr -d '\r')
+   81  kubectl exec -ti --namespace default my-spark-worker-0 -- spark-submit --master spark://my-spark-master-svc:7077     --class org.apache.spark.examples.SparkPi     $EXAMPLE_JAR 5
+   82   kubectl port-forward --namespace default svc/my-spark-master-svc 80:80
+   83  helm list
+   84  helm repo list 
+   85  helm show values prometheus-community/prometheus
+   86  helm show values prometheus-community/prometheus
+   87  helm show values prometheus-community/prometheus >> values-prom.txt
+   88  pwd 
+   89  ls
+   90  helm show values prometheus-community/prometheus >> /home/kapil_chahal/values-prom.txt
+   91  helm repo add bitnami https://charts.bitnami.com/bitnami
+   92  helm repo add apache https://charts.bitnami.com/bitnami
+   93  helm install my-tomcat bitnami/tomcat --version 10.1.19
+   94  kubect get svc
+   95  kubectl get svc
+   96  helm install my-tomcat-2 bitnami/tomcat --version 10.1.19 --set service.type=NodePort
+   97  kubectl get svc
+   98   export NODE_PORT=$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services my-tomcat-2)
+   99    export NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}")
+  100    echo "Tomcat URL:            http://$NODE_IP:$NODE_PORT"
+  101    echo "Tomcat Management URL: http://$NODE_IP:$NODE_PORT/manager"
+  102  echo Username: user
+  103    echo Password: $(kubectl get secret --namespace default my-tomcat-2 -o jsonpath="{.data.tomcat-password}" | base64 --decode)
+  104  helm history
+  105  history
+  106* helm 
+  107  helm history my-tomcat-2
+  108  helm install my-tomcat-2 bitnami/tomcat --version 10.0.0 --set service.type=NodePort
+  109  helm install my-tomcat-2.0 bitnami/tomcat --version 10.0.0 --set service.type=NodePort
+  110  helm install my-tomcat-2-0 bitnami/tomcat --version 10.0.0 --set service.type=NodePort
+  111  helm history my-tomcat-2
+  112  helm list
+  113  kubect get pods
+  114  kubectl get pods
+  115  kubectl get svc
+  116  helm history my-tomcat-2
+  117  helm history my-tomcat-2-0
+  118  helm install my-tomcat-2-0:2 bitnami/tomcat --version 9.0.0 --set service.type=NodePort
+  119  helm install my-tomcat-22 bitnami/tomcat --version 9.0.0 --set service.type=NodePort
+  120  kubectl get svc
+  121  kubect get pods
+  122  kubectl get pods
+  123  kubectl get pods
+  124  kubectl get pods
+  125  kubectl describe my-tomcat-22-6648dddd8-2bg9t
+  126  kubectl describe pods my-tomcat-22-6648dddd8-2bg9t
+  127  kubectl get pods
+  128  helm list 
+  129  helm upgrade my-tomcat-2-0 
+  130  helm get chart
+  131  helm get chart my-tomcat-2-0
+  132  helm get all my-tomcat-2-0
+  133  helm upgrade my-tomcat-2-0 bitnami/tomcat
+  134  export TOMCAT_PASSWORD=$(kubectl get secret --namespace "default" my-tomcat-2-0 -o jsonpath="{.data.tomcat-password}" | base64 --decode)
+  135  helm upgrade my-tomcat-2-0 bitnami/tomcat --set tomcatPassword=$TOMCAT_PASSWORD
+  136  helm history my-tomcat-2-0
+  137  kubectl get svc
+  138  helm delete --all
+  139  helm delete all
+  140  helm delete aall
+  141  helm delete -all
+  142  helm delete -a
+  143  clear
+  144  helm list
+  145  helm delete my-prom my-tomcat 
+  146  helm delete my-tomcat-2 my-tomcat-2-0 my-tomcat-2.0 my-tomcat-22
+  147  helm list
+  148  helm install my-tomcat bitnami/tomcat --version 9.0.0 --set service.type=NodePort
+  149  kubectl get svc
+  150  kubectl get pods
+  151  helm upgrade my-tomcat bitnami/tomcat --version 10.0.0 --set tomcatPassword=$TOMCAT_PASSWORD
+  152  kubectl get svc
+  153  helm upgrade my-tomcat bitnami/tomcat --version 10.1.0 --set tomcatPassword=$TOMCAT_PASSWORD service.type=NodePort
+  154  helm upgrade my-tomcat bitnami/tomcat --version 10.1.0 --set tomcatPassword=$TOMCAT_PASSWORD --set service.type=NodePort
+  155  kubectl get svc
+  156  helm upgrade my-tomcat bitnami/tomcat --set tomcatPassword=$TOMCAT_PASSWORD --set service.type=NodePort
+  157  kubectl get svc
+  158  helm history my-tomcat
+  159  helm history my-tomcat
+  160  kubectl get all
+  161  helm rollback my-tomcat
+  162  helm rollback my-tomcat
+  163  kubectl get all
+  164  helm rollback my-tomcat
+  165  kubectl get all
+  166  kubectl get all
+  167  kubectl get all
+  168  helm history my-tomcat
+  169  helm rollback my-tomcat
+  170  helm history my-tomcat
+  171  ls
+  172  ls
+  173  helm repo add sql https://charts.bitnami.com/bitnami
+  174  helm install my-mysql bitnami/mysql --version 8.9.0
+  175  helm repo add mongo https://charts.bitnami.com/bitnami
+  176  helm install my-mongodb bitnami/mongodb --version 11.1.5
+  177  helm repo add kafka https://charts.bitnami.com/bitnami
+  178  helm install my-kafka bitnami/kafka --version 16.2.3
+  179  helm repo add cass https://charts.bitnami.com/bitnami
+  180  helm install my-cassandra bitnami/cassandra --version 9.1.16
+  181  helm repo add bitnami https://charts.bitnami.com/bitnami
+  182  helm repo adddrupal https://charts.bitnami.com/bitnami
+  183  helm repo add drupal https://charts.bitnami.com/bitnami
+  184  helm install my-drupal bitnami/drupal --version 11.0.29
+  185  helm repo add apache https://charts.bitnami.com/bitnami
+  186  helm repo add httpds https://charts.bitnami.com/bitnami
+  187  helm install my-jenkins bitnami/jenkins --version 10.0.4
+  188  helm list
+  189  kubectl get pods
+  190  kubectl get all
+  191  clear
+  192  helm pull bitnami/tomcat
+  193  ls
+  194  helm pull bitnami/tomcat --untar
+  195  ls
+  196  tree tomcat
+  197  cat tomcat/templates/secrets.yaml 
+  198  cat tomcat/values.yaml 
+  199  cat tomcat/values.yaml | grep -v ##
+  200  grep 
+  201  grep -h
+  202  grep --help
+  203  cat tomcat/values.yaml | grep -v ##
+  204  cat tomcat/values.yaml | grep -vI ##
+  205  cat tomcat/values.yaml | grep -v ##
+  206  cat tomcat/values.yaml | grep -v "##"
+  207  clear
+  208  history
+  209  history >>/home/kapil_chahal/history-commands.txt
