@@ -1,0 +1,7 @@
+
+1. While running port forwarding 
+Error:unable to do port forwarding: socat not found
+
+Soln:
+apt-get -y install socat
+  
