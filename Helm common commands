@@ -1,0 +1,33 @@
+helm search repo/hub <chartname>
+
+helm repo update 
+
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
+helm install my-prometheus prometheus-community/prometheus --version 15.8.1
+
+helm show all my-prometheus
+
+helm list
+
+helm show chart my-spark
+
+helm repo list
+
+helm show values prometheus-community/prometheus
+
+helm status my-spark
+
+helm history <ReleaseName>
+
+helm delete <ReleaseName>
+
+helm upgrade <ReleaseName><chartName>
+
+helm rollback <ReleaseName><Revision>
+
+helm pull <chartname> : donload a hart from a repo
+helm pull --untar <chartname> 
+
+
+
